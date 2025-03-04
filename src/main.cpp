@@ -11,6 +11,8 @@ int main()
 {
     SDL_Window* window;
     SDL_Renderer* renderer;
+    SDL_FRect available_rects[300];
+    int current_count = 0;
     bool is_running = true;
     
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) 
@@ -53,6 +55,12 @@ int main()
 
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 50, 50, 75, 255);
+
+        for(int r_count = 0; r_count < current_count; r_count++)
+        {
+            SDL_RenderRects(renderer, available_rects+r_count, 1);
+        }
+
         SDL_RenderPresent(renderer);
     }
     
